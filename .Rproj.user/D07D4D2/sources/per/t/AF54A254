@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1580378505553.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "307432661",
+    "id" : "AF54A254",
+    "lastKnownWriteTime" : 1580380640,
+    "last_content_update" : 1580380640743,
+    "path" : "C:/Users/Kim Chang Yong/Desktop/R/visualize/ggplot2.R",
+    "project_path" : "ggplot2.R",
+    "properties" : {
+        "cursorPosition" : "62,0",
+        "scrollLine" : "49",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
