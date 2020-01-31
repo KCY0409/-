@@ -61,4 +61,13 @@ gap_af <- filter(gapminder, country == "Afghanistan")
 ggplot(data = gap_af,
        aes(x = year, y = lifeExp)) + geom_line()
 
+# scale 변경하기
+p_point
+ggplot(gapminder) +
+  geom_point(aes(x = log10(gdpPercap),
+                 y = lifeExp))
+
+# scale_* 함수로 변경하기
+(p_point_log10 <- p_point + scale_x_log10())
+
 
