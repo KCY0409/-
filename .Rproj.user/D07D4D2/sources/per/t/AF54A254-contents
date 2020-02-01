@@ -70,4 +70,73 @@ ggplot(gapminder) +
 # scale_* 함수로 변경하기
 (p_point_log10 <- p_point + scale_x_log10())
 
+# color 정보를 aes를 이용해서 mapping하기
+(p_point_color <- p +
+    geom_point(aes(color = continent)))
+summary(p_point_color)
+
+# geom 특징 조절하기
+# 기하 객체의 각 특징은 굳이 데이터에 매핑 될 필요없이 조절 가능 
+# 아래 두  summary를  확인해서 정보가 어떻게 다른지 확인
+summary(p + geom_point(alpha = (1/3), size = 3 ))
+summary(p + geom_point(aes(alpha = (1/3), size = 3)))
+
+p + geom_point(alpha = (1/3), size = 3)
+
+# stat_*()함수로 layer추가하기
+# stat_*()함수는 geom_*() 함수의 특별한 형태로써 통계적인 기능들이 추가되어 동작 
+# geom_*() 힘수 내에서도 통계함수들을 사용해 구현 가능
+
+# stat_smooth로 간단히 추세선 추가하기
+p_point
+p_point + stat_smooth()
+
+# method를 lm(선형회귀)로 변경
+p_point + stat_smooth()
+p_point + geom_smooth(lwd = 2,
+                      se = FALSE,
+                      method = "lm")
+
+# 색정보를 전체에 반영하기
+# layer를 추가할 때 작성한 mapping 정보는 이후에 더해지는 layer에 반영되지 않음
+# 그렇기 때문에 공통으로 사용하는 mapping 정보는 최초 ggplot 객체 생성시 aes() 항수로 반영해야 함
+p_point_color +
+  geom_smooth(lwd = 2 , se = FALSE)
+
+p + aes(color = continent) +
+  geom_point() +
+  geom_smooth(lwd = 1, se = FALSE)
+
+# group과 color
+p + aes(color = continent) +
+  geom_point() +
+  geom_smooth(lwd = 2, se  = FALSE)
+
+p + aes(group = continent) +
+  geom_point() +
+  geom_smooth(lwd = 2 , se = FALSE)
+
+# group으로 차트 나눠 그리기
+# 대륙을 기준으로 차트를 그룹지어 나누어 그리기 가능 --> facet_*()함수 참고
+(lp <- ggplot(gapminder) +
+    geom_jitter(aes(x = year, y = lifeExp)))
+
+lp + facet_wrap(~ continent)
+
+# 실습2
+# gapminder에서 pop 히스토그램을 그리세요
+ggplot(gapminder,
+        aes(x = pop)) + geom_bar()
+ggplot(gapminder,
+       aes(x =pop)) + geom_histogram()
+# continent를 x축 , lifeExp를 y축으로 하는 바이올린차트를 그리고 평균을 파란색 점으로 추가
+ggplot(gapminder,
+       aes(x = continent, y = lifeExp, )) + 
+  geom_violin() +
+  geom_point(aes(color = mean(lifeExp)))
+
+ggplot(gapminder,
+       aes(x = continent, y = lifeExp, )) + 
+  geom_violin() +
+  stat_summary(color = "blue")
 
