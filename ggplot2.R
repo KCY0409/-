@@ -139,4 +139,59 @@ ggplot(gapminder,
        aes(x = continent, y = lifeExp, )) + 
   geom_violin() +
   stat_summary(color = "blue")
+# 각 continent별로 총 몇개의 데이터가 있는지 세어 continent_freq를 만들고 bar차트를 그리세요.
+continent_freq <- gapminder %>% count(continent)
+ggplot(continent_freq,
+       aes(x = continent, y = n)) + geom_bar(stat = "identity")
+# Canada, Rwanda, Cambodia, Mexico 4 나라만 사용하여 x축은 year, y축은 lifeExp로 line 차트를 각 년도에 점을 추가하여 그리세요
+FC <- gapminder %>% filter(country == c("Canada", "Rwanda", "Cambodia", "Mexico"))
+ggplot(FC,
+       aes(x = year, y = lifeExp, color = country)) +
+  geom_line() + geom_point()
+
+jCountries <- c("Canada", "Rwanda", "Cambodia", "Mexico")
+gapminder %>% filter(country %in% jCountries) %>%
+  ggplot(aes(x = year, y = lifeExp, color = country)) +
+  geom_line() + geom_point()
+
+
+# 만든 그래프 정리하기
+# ggplot2을 이용해 출력한 차트는 2가지 방식으로 저장 가능
+# 하나는 rstudio에서 제공하는 GUI방식이고, 다은 하나는 패키지에서 지원하는 ggsave함수를 사용하는 방식
+dir.create("../ggsave", showWarnings =  F)
+ggsave("../ggsave/last.png")
+
+# 여러 차트를 저장하기
+# 계속 만드는 차트를 여러 번 저장해야 할때가 있다.
+# for 문을 사용해 저장해야 하는데, 이름을 바꾸면서 저장
+dir.create("../ggsave", showWarnings = F)
+for(i in 1:length(unique(gapminder$country))){
+  gapminder %>% filter(country == gapminder$country[i]) %>%
+    ggplot(aes(x = year, y = lifeExp, color = country)) +
+    geom_line() + geom_point() +
+    ggsave(paste0("./ggsave/",gapminder$country[i],".png"))
+  # print(paste0(i," / ",length(unique(gapminder$country))))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
