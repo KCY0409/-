@@ -172,26 +172,3 @@ for(i in 1:length(unique(gapminder$country))){
     ggsave(paste0("./ggsave/",gapminder$country[i],".png"))
   # print(paste0(i," / ",length(unique(gapminder$country))))
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
