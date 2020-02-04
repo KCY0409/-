@@ -34,5 +34,14 @@ get_googlemap(loc,
   ggmap()
 
 
+# 한국 polygon 지도 패키지 Kormaps
+# extra는 ggplot2의 인기에 힘입어 다양한 추가 패키지가 개발되면서 관련 정보를 모아서 보여주는 곳
+
+# ggsci 는 유명 색조합이 미리 준비되어 있는 패키지
+if(!require(ggsci)) devtools::install_github("road2stat/ggsci")
+library(ggsci)
+
+
+
 
 
